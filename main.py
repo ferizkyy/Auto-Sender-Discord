@@ -23,12 +23,45 @@ print("\n2.Enter your content")
 inputpayload = input()
 payload = {"content": inputpayload}
 
+proxy = None
+print("Input proxy (Optional) Y/N")
+question = input().strip().upper()
+
+while True:
+
+    if question == "Y":
+        print("Enter your proxy ex(http://user:pass@ip:port or http://ip:port)")
+        print("(Type exit to skip proxy)")
+        inputproxy = input()
+        
+
+        valid_proxy = validation.validasi_proxy(inputproxy)
+
+        if inputproxy.lower() == "exit":
+            break
+
+        if valid_proxy is not None:
+            proxy = {"http": valid_proxy,
+             "https": valid_proxy}
+            break
+        
+        else:
+            continue
+
+    elif question == "N":
+        break
+
+    else:
+        print("Type Y/N")
+        question = input().strip().upper()
+
 while True:
     print("\n3.Enter your authorization")
     inputheader = input()
     valid_header = validation.validasi_header(inputheader)
-    header = {"authorization": valid_header}
+    
     if valid_header is not None:
+        header = {"authorization": valid_header}
         break
 
 while True:
@@ -42,7 +75,8 @@ try:
 
         randomizer = random.choice(delay)
 
-        req = requests.post(channel, json=payload, headers=header)
+        req = requests.post(channel, json=payload,
+                            headers=header, proxies=proxy)
         status = req.status_code
         if status == 200:
             print(f"{time.strftime('(%H:%M:%S)')}Message sent")

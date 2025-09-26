@@ -30,7 +30,19 @@ def validasi_link(input_link):
         return None
     
     if not input_link.startswith(("https://", "http://")):
-       print("Link must start with https://")
+       print("Link must start with https:// or http://")
        return None
     
     return input_link
+
+def validasi_proxy(input_proxy):
+   
+   if not input_proxy.strip():
+      print("Please input your proxy")
+      return None
+
+   if not input_proxy.startswith(("https://", "http://")):
+      print("Proxy must start with (https:// or http://)")
+      return None
+
+   return input_proxy
