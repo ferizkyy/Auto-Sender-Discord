@@ -61,7 +61,7 @@ while True:
     valid_header = validation.validasi_header(inputheader)
     
     if valid_header is not None:
-        header = {"authorization": valid_header, "User-Agents":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"}
+        header = {"authorization": valid_header, "User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36"}
         break
 
 while True:
